@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -14,6 +15,8 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -30,7 +33,7 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        animate={{ backgroundColor: scrolled ? "#2C2424" : "transparent" }}
+        animate={{ backgroundColor: !isHome || scrolled ? "#2C2424" : "transparent" }}
         transition={{ duration: 0.3, ease: "easeOut" }}
         className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4 flex items-center justify-between"
       >
