@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import CountdownTimer from "@/components/CountdownTimer";
 import SectionLabel from "@/components/SectionLabel";
 import SignupForm from "@/components/SignupForm";
+import { SALON_NAME, SOFT_OPENING_DATE, SOFT_OPENING_SPOTS } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Soft Opening Special — Lumière Nails",
+  title: `Soft Opening Special — ${SALON_NAME}`,
   description: "Reserve your spot for our exclusive soft opening offer. Limited to 50 guests.",
 };
 
-const TARGET_DATE = new Date("2026-04-15T23:59:59");
+const TARGET_DATE = SOFT_OPENING_DATE;
 
 export default function SpecialPage() {
   return (
@@ -48,7 +49,7 @@ export default function SpecialPage() {
       {/* Form */}
       <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-8">
         <h2 className="font-display text-2xl text-white font-semibold mb-1">Reserve My Spot</h2>
-        <p className="text-white/40 text-sm mb-6">Only 50 spots available</p>
+        <p className="text-white/40 text-sm mb-6">Only {SOFT_OPENING_SPOTS} spots available</p>
 
         <SignupForm />
       </div>

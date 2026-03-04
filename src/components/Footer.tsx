@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SALON_NAME, ADDRESS_LINE1, ADDRESS_LINE2, PHONE, EMAIL, HOURS_SHORT, SOCIALS } from "@/lib/config";
 
 const quickLinks = [
   { label: "Services", href: "/services" },
@@ -9,17 +10,10 @@ const quickLinks = [
 ];
 
 const contactInfo = [
-  { icon: "📍", text: "123 Blossom Avenue, Suite 101\nYour City, ST 00000" },
-  { icon: "📞", text: "(555) 123-4567" },
-  { icon: "✉️", text: "hello@lumierenails.com" },
-  { icon: "🕐", text: "Mon–Sat: 9am – 7pm\nSunday: 10am – 5pm" },
-];
-
-const socials = [
-  { label: "Instagram", href: "#", icon: "📸" },
-  { label: "Facebook", href: "#", icon: "👤" },
-  { label: "TikTok", href: "#", icon: "🎵" },
-  { label: "Pinterest", href: "#", icon: "📌" },
+  { icon: "📍", text: `${ADDRESS_LINE1}\n${ADDRESS_LINE2}` },
+  { icon: "📞", text: PHONE },
+  { icon: "✉️", text: EMAIL },
+  { icon: "🕐", text: HOURS_SHORT },
 ];
 
 export default function Footer() {
@@ -28,7 +22,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 md:px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Column 1 — Brand + Quick Links */}
         <div>
-          <p className="font-display text-2xl text-gold font-semibold mb-3">Lumière Nails</p>
+          <p className="font-display text-2xl text-gold font-semibold mb-3">{SALON_NAME}</p>
           <p className="text-sm text-white/50 mb-6 leading-relaxed">
             Premium nail care in a warm, welcoming space. Every visit is a moment of luxury.
           </p>
@@ -63,7 +57,7 @@ export default function Footer() {
         <div>
           <h3 className="text-xs uppercase tracking-[0.15em] text-gold font-semibold mb-6">Follow Us</h3>
           <ul className="space-y-3">
-            {socials.map((s) => (
+            {SOCIALS.map((s) => (
               <li key={s.label}>
                 <a
                   href={s.href}
@@ -90,7 +84,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/10 px-6 md:px-12 py-5">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/30">
-          <p>© {new Date().getFullYear()} Lumière Nails. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {SALON_NAME}. All rights reserved.</p>
           <p>Designed with care ✨</p>
         </div>
       </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import SectionLabel from "@/components/SectionLabel";
 import ServiceCard from "@/components/ServiceCard";
+import { SALON_NAME } from "@/lib/config";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -197,7 +198,7 @@ export default function Home() {
               </h2>
             </motion.div>
             <motion.p variants={fadeUp} className="text-muted leading-relaxed mb-4">
-              Lumière Nails was born from a simple belief: that every person deserves to feel pampered, polished, and perfectly at ease. We created a space that blends luxury with warmth — where the details matter and the experience lingers long after you leave.
+              {SALON_NAME} was born from a simple belief: that every person deserves to feel pampered, polished, and perfectly at ease. We created a space that blends luxury with warmth — where the details matter and the experience lingers long after you leave.
             </motion.p>
             <motion.p variants={fadeUp} className="text-muted leading-relaxed mb-8">
               Our team of skilled technicians uses only premium, salon-grade products to ensure results that are as beautiful as they are lasting. From a quick polish refresh to a full spa treatment, we bring the same level of care to every service.

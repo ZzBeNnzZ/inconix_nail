@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EmailPopup from "@/components/EmailPopup";
 import { Analytics } from "@vercel/analytics/next";
+import { SALON_NAME } from "@/lib/config";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -19,7 +20,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Lumière Nails — Luxury Nail Salon",
+  title: `${SALON_NAME} — Luxury Nail Salon`,
   description: "Premium nail care services in an elegant, relaxing atmosphere. Book your appointment today.",
 };
 

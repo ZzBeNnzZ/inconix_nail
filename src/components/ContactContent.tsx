@@ -3,6 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import SectionLabel from "@/components/SectionLabel";
 import ContactForm from "@/components/ContactForm";
+import { ADDRESS_LINE1, ADDRESS_LINE2, PHONE, EMAIL, HOURS, SOCIALS } from "@/lib/config";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -13,12 +14,6 @@ const stagger: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.08 } },
 };
-
-const hours = [
-  { day: "Monday – Friday", time: "9:00 AM – 7:00 PM" },
-  { day: "Saturday", time: "9:00 AM – 6:00 PM" },
-  { day: "Sunday", time: "10:00 AM – 5:00 PM" },
-];
 
 export default function ContactContent() {
   return (
@@ -54,19 +49,19 @@ export default function ContactContent() {
             <div>
               <h2 className="font-semibold text-charcoal mb-3 text-sm uppercase tracking-[0.1em]">Location</h2>
               <p className="text-muted leading-relaxed">
-                123 Blossom Avenue, Suite 101<br />
-                Your City, ST 00000
+                {ADDRESS_LINE1}<br />
+                {ADDRESS_LINE2}
               </p>
             </div>
             <div>
               <h2 className="font-semibold text-charcoal mb-3 text-sm uppercase tracking-[0.1em]">Phone & Email</h2>
-              <p className="text-muted">(555) 123-4567</p>
-              <p className="text-muted">hello@lumierenails.com</p>
+              <p className="text-muted">{PHONE}</p>
+              <p className="text-muted">{EMAIL}</p>
             </div>
             <div>
               <h2 className="font-semibold text-charcoal mb-3 text-sm uppercase tracking-[0.1em]">Hours</h2>
               <ul className="space-y-1.5">
-                {hours.map((h) => (
+                {HOURS.map((h) => (
                   <li key={h.day} className="flex justify-between text-sm gap-8">
                     <span className="text-charcoal/80">{h.day}</span>
                     <span className="text-muted">{h.time}</span>
@@ -77,13 +72,13 @@ export default function ContactContent() {
             <div>
               <h2 className="font-semibold text-charcoal mb-3 text-sm uppercase tracking-[0.1em]">Follow Us</h2>
               <div className="flex gap-4">
-                {["Instagram", "Facebook", "TikTok"].map((s) => (
+                {SOCIALS.map((s) => (
                   <a
-                    key={s}
-                    href="#"
+                    key={s.label}
+                    href={s.href}
                     className="text-sm text-muted hover:text-deep-berry transition-colors duration-200 border-b border-muted/30 pb-0.5"
                   >
-                    {s}
+                    {s.label}
                   </a>
                 ))}
               </div>

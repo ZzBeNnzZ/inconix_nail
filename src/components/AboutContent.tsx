@@ -3,6 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
+import { SALON_NAME } from "@/lib/config";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -15,7 +16,7 @@ const stagger: Variants = {
 };
 
 const team = [
-  { name: "Sophia Chen", role: "Founder & Lead Nail Artist", bio: "With 12 years of experience in luxury nail care, Sophia founded Lumière to bring a spa-level experience to every client, every visit." },
+  { name: "Sophia Chen", role: "Founder & Lead Nail Artist", bio: `With 12 years of experience in luxury nail care, Sophia founded ${SALON_NAME} to bring a spa-level experience to every client, every visit.` },
   { name: "Maya Williams", role: "Senior Nail Technician", bio: "Maya specializes in intricate nail art and gel extensions. Her work has been featured in local beauty editorials." },
   { name: "Priya Patel", role: "Nail Technician & Educator", bio: "Priya brings warmth and precision to every service. She also leads our junior technician training program." },
   { name: "Jade Torres", role: "Nail Technician", bio: "Jade's specialty is minimalist nail art and long-lasting dip powder manicures. Clients love her calming chair-side manner." },
@@ -59,10 +60,10 @@ export default function AboutContent() {
           </motion.div>
           <div>
             <motion.p variants={fadeUp} className="text-charcoal/80 leading-relaxed mb-5">
-              Lumière Nails was born from a simple belief: that every person deserves to feel pampered, polished, and perfectly at ease. We created a space that blends luxury with warmth — where the details matter and the experience lingers long after you leave.
+              {SALON_NAME} was born from a simple belief: that every person deserves to feel pampered, polished, and perfectly at ease. We created a space that blends luxury with warmth — where the details matter and the experience lingers long after you leave.
             </motion.p>
             <motion.p variants={fadeUp} className="text-charcoal/80 leading-relaxed mb-5">
-              Our salon is designed to feel like a retreat. The moment you walk in, the hustle outside fades. Soft lighting, curated scents, and a team that genuinely cares about your wellbeing — that&apos;s what Lumière is about.
+              Our salon is designed to feel like a retreat. The moment you walk in, the hustle outside fades. Soft lighting, curated scents, and a team that genuinely cares about your wellbeing — that&apos;s what {SALON_NAME} is about.
             </motion.p>
             <motion.p variants={fadeUp} className="text-charcoal/80 leading-relaxed">
               We believe nail care is self-care. Whether you come in for a quick refresh or a full spa treatment, you leave feeling like the best version of yourself. That&apos;s our promise.
@@ -140,7 +141,7 @@ export default function AboutContent() {
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="text-center px-6"
       >
-        <p className="text-muted mb-5">Ready to experience Lumière for yourself?</p>
+        <p className="text-muted mb-5">Ready to experience {SALON_NAME} for yourself?</p>
         <Link
           href="/special"
           className="inline-block px-10 py-4 rounded-full bg-deep-berry text-white font-semibold text-sm uppercase tracking-widest hover:scale-105 hover:bg-deep-berry/90 transition-all duration-200 shadow-md"

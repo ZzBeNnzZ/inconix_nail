@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { SALON_NAME } from "@/lib/config";
 
 const navLinks = [
   { label: "Services", href: "/services" },
@@ -39,7 +40,7 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link href="/" className="font-display text-xl font-semibold text-gold tracking-wide">
-          Lumière Nails
+          {SALON_NAME}
         </Link>
 
         {/* Desktop nav */}
