@@ -25,7 +25,7 @@ export default function GalleryContent() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-warm-cream pt-32 pb-24 px-6 md:px-12">
+    <div className="min-h-screen bg-warm-cream pt-40 pb-24 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div

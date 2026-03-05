@@ -20,7 +20,7 @@ export default function ServicesPage() {
   const filtered = services.filter((s) => s.category === active);
 
   return (
-    <div className="min-h-screen bg-warm-cream pt-32 pb-24 px-6 md:px-12">
+    <div className="min-h-screen bg-warm-cream pt-40 pb-24 px-6 md:px-12">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <motion.div

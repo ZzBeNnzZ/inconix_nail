@@ -1,5 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { FaMapPin, FaPhone, FaEnvelope, FaClock, FaInstagram, FaFacebookF, FaTiktok } from "react-icons/fa6";
+import type { IconType } from "react-icons";
+
+const socialIcons: Record<string, IconType> = {
+  instagram: FaInstagram,
+  facebook: FaFacebookF,
+  tiktok: FaTiktok,
+};
 import {
   SALON_NAME,
   ADDRESS_LINE1,
@@ -19,10 +27,14 @@ const quickLinks = [
 ];
 
 const contactInfo = [
-  { icon: "📍", text: `${ADDRESS_LINE1}\n${ADDRESS_LINE2}` },
-  { icon: "📞", text: PHONE },
-  { icon: "✉️", text: EMAIL },
-  { icon: "🕐", text: HOURS_SHORT },
+  {
+    icon: <FaMapPin className="w-4 h-4 shrink-0 mt-0.5" />,
+    text: `${ADDRESS_LINE1}\n${ADDRESS_LINE2}`,
+    href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${ADDRESS_LINE1}, ${ADDRESS_LINE2}`)}`,
+  },
+  { icon: <FaPhone className="w-4 h-4 shrink-0 mt-0.5" />, text: PHONE, href: `tel:${PHONE.replace(/[^+\d]/g, "")}` },
+  { icon: <FaEnvelope className="w-4 h-4 shrink-0 mt-0.5" />, text: EMAIL, href: `mailto:${EMAIL}` },
+  { icon: <FaClock className="w-4 h-4 shrink-0 mt-0.5" />, text: HOURS_SHORT, href: undefined },
 ];
 
 export default function Footer() {
@@ -62,13 +74,21 @@ export default function Footer() {
             Contact
           </h3>
           <ul className="space-y-4">
-            {contactInfo.map((item) => (
-              <li
-                key={item.icon}
-                className="flex gap-3 text-sm leading-relaxed"
-              >
-                <span>{item.icon}</span>
-                <span className="whitespace-pre-line">{item.text}</span>
+            {contactInfo.map((item, i) => (
+              <li key={i} className="flex gap-3 text-sm leading-relaxed">
+                {item.icon}
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="whitespace-pre-line hover:text-gold transition-colors duration-200"
+                  >
+                    {item.text}
+                  </a>
+                ) : (
+                  <span className="whitespace-pre-line">{item.text}</span>
+                )}
               </li>
             ))}
           </ul>
@@ -80,17 +100,26 @@ export default function Footer() {
             Follow Us
           </h3>
           <ul className="space-y-3">
-            {SOCIALS.map((s) => (
-              <li key={s.label}>
-                <a
-                  href={s.href}
-                  className="flex items-center gap-3 text-sm hover:text-gold transition-colors duration-200"
-                >
-                  <span>{s.icon}</span>
-                  <span>{s.label}</span>
-                </a>
-              </li>
-            ))}
+            {SOCIALS.map((s) => {
+              const Icon = socialIcons[s.icon];
+              return (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-sm hover:text-gold transition-colors duration-200"
+                  >
+                    {Icon ? (
+                      <Icon className="w-4 h-4" />
+                    ) : (
+                      <span>{s.icon}</span>
+                    )}
+                    <span>{s.label}</span>
+                  </a>
+                </li>
+              );
+            })}
           </ul>
           <div className="mt-8">
             <p className="text-xs text-white/40 mb-3">Stay in the loop</p>
@@ -110,7 +139,7 @@ export default function Footer() {
           <p>
             © {new Date().getFullYear()} {SALON_NAME}. All rights reserved.
           </p>
-          <p>Designed with care ✨</p>
+          <p>Designed with care </p>
         </div>
       </div>
     </footer>

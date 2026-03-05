@@ -27,9 +27,9 @@ export const FACEBOOK_URL = process.env.NEXT_PUBLIC_FACEBOOK_URL || "";
 export const TIKTOK_URL = process.env.NEXT_PUBLIC_TIKTOK_URL || "";
 
 export const SOCIALS = [
-  { label: "Instagram", href: INSTAGRAM_URL || "#", icon: "📸" },
-  { label: "Facebook", href: FACEBOOK_URL || "#", icon: "👤" },
-  { label: "TikTok", href: TIKTOK_URL || "#", icon: "🎵" },
+  { label: "Instagram", href: INSTAGRAM_URL || "#", icon: "instagram" },
+  { label: "Facebook", href: FACEBOOK_URL || "#", icon: "facebook" },
+  { label: "TikTok", href: TIKTOK_URL || "#", icon: "tiktok" },
 ];
 
 // Soft Opening

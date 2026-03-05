@@ -13,7 +13,7 @@ const TARGET_DATE = SOFT_OPENING_DATE;
 
 export default function SpecialPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-charcoal via-charcoal to-deep-berry flex flex-col items-center justify-start pt-32 pb-24 px-6">
+    <div className="min-h-screen bg-gradient-to-br from-charcoal via-charcoal to-deep-berry flex flex-col items-center justify-start pt-40 pb-24 px-6">
       {/* Badge */}
       <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/40 bg-gold/10 mb-8">
         <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />

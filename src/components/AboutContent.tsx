@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
+import { FaGem, FaLeaf, FaHeart, FaStar, FaUser } from "react-icons/fa6";
 import SectionLabel from "@/components/SectionLabel";
 import { SALON_NAME } from "@/lib/config";
 
@@ -23,15 +24,15 @@ const team = [
 ];
 
 const values = [
-  { icon: "💎", title: "Premium Products", description: "We use only high-grade, salon-trusted brands — products we'd put on our own nails." },
-  { icon: "🌿", title: "Clean & Safe", description: "Hospital-grade sterilization, single-use files, and a fully sanitized environment. Always." },
-  { icon: "🤍", title: "Relaxing Atmosphere", description: "Soft music, warm lighting, and a calm pace — because this time is yours." },
-  { icon: "✨", title: "Expert Technicians", description: "Every member of our team is trained, certified, and genuinely passionate about nail artistry." },
+  { icon: <FaGem className="w-7 h-7 text-gold" />, title: "Premium Products", description: "We use only high-grade, salon-trusted brands — products we'd put on our own nails." },
+  { icon: <FaLeaf className="w-7 h-7 text-gold" />, title: "Clean & Safe", description: "Hospital-grade sterilization, single-use files, and a fully sanitized environment. Always." },
+  { icon: <FaHeart className="w-7 h-7 text-gold" />, title: "Relaxing Atmosphere", description: "Soft music, warm lighting, and a calm pace — because this time is yours." },
+  { icon: <FaStar className="w-7 h-7 text-gold" />, title: "Expert Technicians", description: "Every member of our team is trained, certified, and genuinely passionate about nail artistry." },
 ];
 
 export default function AboutContent() {
   return (
-    <div className="min-h-screen bg-warm-cream pt-32 pb-24">
+    <div className="min-h-screen bg-warm-cream pt-40 pb-24">
       {/* Header */}
       <motion.div
         initial="hidden"
@@ -94,7 +95,7 @@ export default function AboutContent() {
                   variants={fadeUp}
                   className="bg-white rounded-2xl border border-almond p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
                 >
-                  <span className="text-3xl mb-4 block">{v.icon}</span>
+                  <span className="mb-4 block">{v.icon}</span>
                   <h3 className="font-semibold text-charcoal mb-2">{v.title}</h3>
                   <p className="text-sm text-muted leading-relaxed">{v.description}</p>
                 </motion.div>
@@ -122,7 +123,7 @@ export default function AboutContent() {
             {team.map((member) => (
               <motion.div key={member.name} variants={fadeUp} className="text-center">
                 <div className="rounded-2xl bg-blush/40 aspect-square mb-4 flex items-center justify-center">
-                  <span className="text-4xl">🌸</span>
+                  <FaUser className="w-10 h-10 text-rose" />
                 </div>
                 <h3 className="font-semibold text-charcoal">{member.name}</h3>
                 <p className="text-xs text-gold uppercase tracking-[0.1em] mt-1 mb-2">{member.role}</p>

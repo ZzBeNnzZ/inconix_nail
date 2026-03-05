@@ -34,20 +34,29 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        animate={{ backgroundColor: !isHome || scrolled ? "#2C2424" : "transparent" }}
+        animate={{
+          backgroundColor: !isHome || scrolled ? "#2C2424" : "transparent",
+          paddingTop: scrolled ? "0.5rem" : "1rem",
+          paddingBottom: scrolled ? "0.5rem" : "1rem",
+        }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4 flex items-center justify-between"
+        className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 flex items-center justify-between"
       >
         {/* Logo */}
         <Link href="/">
-          <Image
-            src="/images/logo/transparent/logo_iconix_new-02.png"
-            alt="Logo"
-            width={1080}
-            height={1130}
-            className="h-24 w-auto"
-            priority
-          />
+          <motion.div
+            animate={{ height: scrolled ? "3.5rem" : "6rem" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <Image
+              src="/images/logo/transparent/logo_iconix_new-02.png"
+              alt="Logo"
+              width={1080}
+              height={1130}
+              className="h-full w-auto"
+              priority
+            />
+          </motion.div>
         </Link>
 
         {/* Desktop nav */}
