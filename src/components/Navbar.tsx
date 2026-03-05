@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { SALON_NAME } from "@/lib/config";
 
 const navLinks = [
   { label: "Services", href: "/services" },
@@ -39,8 +39,15 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4 flex items-center justify-between"
       >
         {/* Logo */}
-        <Link href="/" className="font-display text-xl font-semibold text-gold tracking-wide">
-          {SALON_NAME}
+        <Link href="/">
+          <Image
+            src="/images/logo/transparent/logo_iconix_new-05.png"
+            alt="Logo"
+            width={1990}
+            height={861}
+            className="h-14 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop nav */}

@@ -28,12 +28,31 @@ function pad(n: number) {
 }
 
 export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
-  const [time, setTime] = useState<TimeLeft>(calculate(targetDate));
+  const [time, setTime] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
+    setTime(calculate(targetDate));
     const id = setInterval(() => setTime(calculate(targetDate)), 1000);
     return () => clearInterval(id);
   }, [targetDate]);
+
+  if (!time) {
+    return (
+      <div className="flex gap-3 sm:gap-5 justify-center">
+        {["Days", "Hours", "Min", "Sec"].map((label) => (
+          <div
+            key={label}
+            className="flex flex-col items-center bg-white/10 border border-white/20 rounded-2xl px-4 py-4 sm:px-6 sm:py-5 min-w-[72px] sm:min-w-[88px]"
+          >
+            <span className="font-display text-3xl sm:text-4xl font-semibold text-gold leading-none tabular-nums">
+              --
+            </span>
+            <span className="text-xs uppercase tracking-[0.15em] text-white/50 mt-2">{label}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   const units = [
     { label: "Days", value: pad(time.days) },
