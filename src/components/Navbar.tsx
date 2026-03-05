@@ -41,11 +41,11 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/">
           <Image
-            src="/images/logo/transparent/logo_iconix_new-05.png"
+            src="/images/logo/transparent/logo_iconix_new-02.png"
             alt="Logo"
-            width={1990}
-            height={861}
-            className="h-14 w-auto"
+            width={1080}
+            height={1130}
+            className="h-24 w-auto"
             priority
           />
         </Link>

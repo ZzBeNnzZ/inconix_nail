@@ -32,11 +32,11 @@ export default function Footer() {
         {/* Column 1 — Brand + Quick Links */}
         <div>
           <Image
-            src="/images/logo/transparent/logo_iconix_new-05.png"
+            src="/images/logo/transparent/logo_iconix_new-02.png"
             alt={SALON_NAME}
-            width={1990}
-            height={861}
-            className="h-10 w-auto mb-3"
+            width={1080}
+            height={1130}
+            className="h-20 w-auto mb-3"
           />
           <p className="text-sm text-white/50 mb-6 leading-relaxed">
             Premium nail care in a warm, welcoming space. Every visit is a
