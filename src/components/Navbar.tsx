@@ -34,6 +34,7 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
+        initial={false}
         animate={{
           backgroundColor: !isHome || scrolled ? "#2C2424" : "transparent",
           paddingTop: scrolled ? "0.5rem" : "1rem",
@@ -45,8 +46,10 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/">
           <motion.div
+            initial={false}
             animate={{ height: scrolled ? "3.5rem" : "6rem" }}
             transition={{ duration: 0.3, ease: "easeOut" }}
+            style={{ overflow: "hidden" }}
           >
             <Image
               src="/images/logo/transparent/logo_iconix_new-02.png"

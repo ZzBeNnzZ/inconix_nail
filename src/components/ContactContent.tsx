@@ -85,18 +85,22 @@ export default function ContactContent() {
               <h2 className="font-semibold text-charcoal mb-3 text-sm uppercase tracking-[0.1em]">
                 Phone & Email
               </h2>
-              <a
-                href={`tel:${PHONE.replace(/[^+\d]/g, "")}`}
-                className="block text-muted hover:text-deep-berry transition-colors duration-200"
-              >
-                {PHONE}
-              </a>
-              <a
-                href={`mailto:${EMAIL}`}
-                className="block text-muted hover:text-deep-berry transition-colors duration-200"
-              >
-                {EMAIL}
-              </a>
+              <div>
+                <a
+                  href={`tel:${PHONE.replace(/[^+\d]/g, "")}`}
+                  className="text-muted hover:text-deep-berry transition-colors duration-200"
+                >
+                  {PHONE}
+                </a>
+              </div>
+              <div>
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="text-muted hover:text-deep-berry transition-colors duration-200"
+                >
+                  {EMAIL}
+                </a>
+              </div>
             </div>
             <div>
               <h2 className="font-semibold text-charcoal mb-3 text-sm uppercase tracking-[0.1em]">
