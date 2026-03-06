@@ -101,7 +101,7 @@ export default function Home() {
             variants={fadeUp}
             className="text-xs uppercase tracking-[0.25em] text-gold font-semibold mb-6"
           >
-            Now Open in Your City
+            Now Open in Houston
           </motion.p>
 
           <motion.h1
