@@ -17,24 +17,35 @@ export default function ServicesPage() {
   const [openSections, setOpenSections] = useState<Set<string>>(new Set(["nail-enhancements"]));
   const [activeSection, setActiveSection] = useState(allIds[0]);
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
+  const isJumping = useRef(false);
+  const rafRef = useRef<number | null>(null);
 
-  // Scroll spy
+  // Scroll spy — positional: "last section whose top has passed the trigger line"
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    menuSections.forEach((section) => {
-      const el = sectionRefs.current.get(section.id);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(section.id);
-        },
-        { rootMargin: "-10% 0px -75% 0px" }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
+    const TRIGGER = 160; // px from viewport top, matches the jumpTo offset
+
+    const onScroll = () => {
+      if (isJumping.current) return;
+      if (rafRef.current !== null) return;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        let active = allIds[0];
+        for (const id of allIds) {
+          const el = sectionRefs.current.get(id);
+          if (!el) continue;
+          if (el.getBoundingClientRect().top <= TRIGGER) active = id;
+        }
+        setActiveSection(active);
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // set correct highlight on mount
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [allIds]);
 
   const toggleSection = (id: string) => {
     setOpenSections((prev) => {
@@ -46,13 +57,18 @@ export default function ServicesPage() {
   };
 
   const jumpTo = (id: string) => {
+    setActiveSection(id);
     setOpenSections((prev) => new Set([...prev, id]));
+    isJumping.current = true;
     setTimeout(() => {
       const el = sectionRefs.current.get(id);
       if (!el) return;
       const offset = 140;
       const top = el.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: "smooth" });
+      setTimeout(() => {
+        isJumping.current = false;
+      }, 1000);
     }, 50);
   };
 
