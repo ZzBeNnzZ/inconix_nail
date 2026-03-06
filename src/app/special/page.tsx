@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import CountdownTimer from "@/components/CountdownTimer";
-import SectionLabel from "@/components/SectionLabel";
 import SignupForm from "@/components/SignupForm";
 import {
   SALON_NAME,
@@ -61,6 +60,15 @@ export default function SpecialPage() {
           Offer ends in
         </p>
         <CountdownTimer targetDate={TARGET_DATE} />
+        <div className="flex justify-center mt-4">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gold/20 border border-gold/40 text-gold text-xs font-medium">
+            {TARGET_DATE.toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </span>
+        </div>
       </div>
 
       {/* Form */}

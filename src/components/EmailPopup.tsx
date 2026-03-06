@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { MdSpa } from "react-icons/md";
 
 const STORAGE_KEY = "lumiere_popup_dismissed";
 
@@ -9,14 +10,14 @@ export default function EmailPopup() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY)) return;
-    const timer = setTimeout(() => setVisible(true), 5000);
+    if (sessionStorage.getItem(STORAGE_KEY)) return;
+    const timer = setTimeout(() => setVisible(true), 2000);
     return () => clearTimeout(timer);
   }, []);
 
   function dismiss() {
     setVisible(false);
-    localStorage.setItem(STORAGE_KEY, "1");
+    sessionStorage.setItem(STORAGE_KEY, "1");
   }
 
   return (
@@ -52,7 +53,9 @@ export default function EmailPopup() {
               </button>
 
               {/* Icon */}
-              <div className="text-4xl mb-4 text-center">💅</div>
+              <div className="flex justify-center mb-4">
+                <MdSpa className="text-4xl text-gold" />
+              </div>
 
               {/* Copy */}
               <h2 className="font-display text-2xl text-charcoal font-semibold text-center mb-2">

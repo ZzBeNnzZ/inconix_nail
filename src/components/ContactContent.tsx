@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { FaMapPin } from "react-icons/fa6";
 import SectionLabel from "@/components/SectionLabel";
 import ContactForm from "@/components/ContactForm";
 import {
