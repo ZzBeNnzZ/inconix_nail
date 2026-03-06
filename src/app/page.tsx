@@ -20,32 +20,32 @@ const stagger: Variants = {
 
 const featuredServices = [
   {
-    name: "Gel Manicure",
+    name: "Iconix 24K Golden Bliss",
     description:
-      "Long-lasting gel polish with a mirror-shine finish. Chip-free for up to 3 weeks.",
-    price: "$50",
-    duration: "45 min",
+      "Our most luxurious pedicure — 24K gold scrub, jelly mask, collagen socks, hot stone therapy, and gold serum infusion.",
+    price: "$85",
+    duration: "70 mins",
   },
   {
-    name: "Luxury Spa Manicure",
+    name: "Iconix Renewal Touch",
     description:
-      "Indulge in a full treatment: soak, exfoliation, mask, massage, and polish of your choice.",
+      "Signature manicure with mineral sugar treatment, collagen glove therapy, light-based circulation therapy, and rejuvenating massage.",
     price: "$65",
-    duration: "60 min",
+    duration: "45 mins",
   },
   {
-    name: "Gel-X Extensions",
+    name: "The Iconix Ritual",
     description:
-      "Soft gel extensions for natural-looking length. Lightweight and flexible.",
-    price: "$80",
-    duration: "60 min",
+      "Our signature head spa — a full-sensory journey of scalp cleansing, therapeutic massage, and warm water therapy inspired by Vietnamese healing.",
+    price: "$115",
+    duration: "65 mins",
   },
   {
-    name: "Luxury Spa Pedicure",
+    name: "Champagne Kiss",
     description:
-      "A full foot treatment with hot stone massage, mask, and your choice of polish.",
+      "Champagne & rose soak, sugar exfoliation, hot stone massage, and hydrating mask — pure indulgence from start to finish.",
     price: "$75",
-    duration: "60 min",
+    duration: "65 mins",
   },
 ];
 

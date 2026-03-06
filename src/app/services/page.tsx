@@ -1,99 +1,180 @@
 "use client";
 
-import { useState } from "react";
-import { motion, type Variants } from "framer-motion";
-import { services, categories, type ServiceCategory } from "@/lib/services-data";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiChevronDown } from "react-icons/fi";
+import {
+  menuSections,
+  type PriceRowItem,
+  type NamedCardItem,
+  type SpaCardItem,
+} from "@/lib/services-data";
+import SectionJumpNav from "@/components/SectionJumpNav";
 import SectionLabel from "@/components/SectionLabel";
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
-};
-
-const stagger: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.06 } },
-};
-
 export default function ServicesPage() {
-  const [active, setActive] = useState<ServiceCategory>("Manicures");
-  const filtered = services.filter((s) => s.category === active);
+  const allIds = menuSections.map((s) => s.id);
+  const [openSections, setOpenSections] = useState<Set<string>>(new Set(allIds));
+  const [activeSection, setActiveSection] = useState(allIds[0]);
+  const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
+
+  // Scroll spy
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    menuSections.forEach((section) => {
+      const el = sectionRefs.current.get(section.id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(section.id);
+        },
+        { rootMargin: "-10% 0px -75% 0px" }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  const toggleSection = (id: string) => {
+    setOpenSections((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const jumpTo = (id: string) => {
+    setOpenSections((prev) => new Set([...prev, id]));
+    setTimeout(() => {
+      const el = sectionRefs.current.get(id);
+      if (!el) return;
+      const offset = 140;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }, 50);
+  };
 
   return (
-    <div className="min-h-screen bg-warm-cream pt-40 pb-24 px-6 md:px-12">
-      <div className="max-w-3xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={stagger}
-          className="mb-12"
-        >
-          <motion.div variants={fadeUp}>
-            <SectionLabel text="Full Menu" />
-            <h1 className="font-display text-5xl md:text-6xl text-charcoal font-semibold mt-2 mb-4">
-              Our Services
-            </h1>
-            <p className="text-muted leading-relaxed max-w-lg">
-              Every service is performed with premium products, careful technique, and genuine attention to detail.
-            </p>
-          </motion.div>
-        </motion.div>
+    <div className="min-h-screen bg-warm-cream">
+      {/* Page Header */}
+      <div className="pt-40 pb-8 px-6 md:px-12 max-w-3xl mx-auto">
+        <SectionLabel text="Full Menu" />
+        <h1 className="font-display text-5xl md:text-6xl text-charcoal font-semibold mt-2 mb-3">
+          Our Services
+        </h1>
+        <p className="text-muted leading-relaxed max-w-lg">
+          Every service is performed with premium products, careful technique, and genuine attention
+          to detail.
+        </p>
+      </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold uppercase tracking-widest transition-all duration-200 ${
-                active === cat
-                  ? "bg-deep-berry text-white shadow-sm"
-                  : "bg-white text-muted border border-almond hover:border-rose hover:text-deep-berry"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+      {/* Sticky Jump Nav */}
+      <SectionJumpNav
+        sections={menuSections.map((s) => ({ id: s.id, label: s.label }))}
+        activeSection={activeSection}
+        onJump={jumpTo}
+      />
 
-        {/* Service List */}
-        <motion.div
-          key={active}
-          initial="hidden"
-          animate="visible"
-          variants={stagger}
-          className="bg-white rounded-2xl border border-almond shadow-sm overflow-hidden"
-        >
-          {filtered.map((service, i) => (
-            <motion.div
-              key={service.name}
-              variants={fadeUp}
-              className={`px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 ${
-                i < filtered.length - 1 ? "border-b border-almond" : ""
-              }`}
+      {/* Sections */}
+      <div className="max-w-3xl mx-auto px-6 md:px-12 pb-24 pt-4 space-y-4">
+        {menuSections.map((section) => {
+          const isOpen = openSections.has(section.id);
+          return (
+            <div
+              key={section.id}
+              ref={(el) => {
+                if (el) sectionRefs.current.set(section.id, el);
+              }}
+              className="rounded-2xl border border-almond overflow-hidden bg-white shadow-sm"
             >
-              {/* Left: name + description */}
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold text-charcoal">{service.name}</p>
-                <p className="text-sm text-muted mt-0.5 leading-relaxed">{service.description}</p>
-              </div>
-              {/* Right: duration + price */}
-              <div className="flex items-center gap-5 shrink-0">
-                <span className="text-xs text-muted/70 uppercase tracking-[0.1em]">{service.duration}</span>
-                <span className="font-display text-deep-berry text-xl font-semibold">{service.price}</span>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              {/* Section Header */}
+              <button
+                onClick={() => toggleSection(section.id)}
+                className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-almond/40 transition-colors duration-200"
+              >
+                <h2 className="font-display text-xl font-bold tracking-wide text-deep-berry">
+                  {section.heading}
+                </h2>
+                <motion.div
+                  animate={{ rotate: isOpen ? 0 : -90 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                >
+                  <FiChevronDown className="text-deep-berry w-5 h-5" />
+                </motion.div>
+              </button>
+
+              {/* Collapsible Content */}
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    key="content"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.28, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-6 border-t border-almond">
+                      {/* Section note */}
+                      {section.note && (
+                        <p className="text-sm text-muted italic mt-4 mb-2">{section.note}</p>
+                      )}
+
+                      {/* Add-on callouts */}
+                      {section.addOns && (
+                        <div className="flex flex-wrap gap-2 mt-3 mb-5">
+                          {section.addOns.map((ao) => (
+                            <span
+                              key={ao}
+                              className="text-xs bg-almond text-charcoal px-3 py-1.5 rounded-full"
+                            >
+                              {ao}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Sub-groups */}
+                      {section.groups.map((group, gi) => (
+                        <div key={gi} className={gi > 0 ? "mt-7" : "mt-4"}>
+                          {group.heading && (
+                            <p className="text-xs font-bold uppercase tracking-[0.15em] text-gold mb-3 pb-2 border-b border-almond">
+                              {group.heading}
+                            </p>
+                          )}
+                          <div>
+                            {group.items.map((item, ii) => {
+                              const isLast = ii === group.items.length - 1;
+                              if (item.type === "price-row")
+                                return renderPriceRow(item, ii, isLast);
+                              if (item.type === "named-card")
+                                return renderNamedCard(item, ii);
+                              if (item.type === "spa-card")
+                                return renderSpaCard(item, ii);
+                              return null;
+                            })}
+                          </div>
+                        </div>
+                      ))}
+
+                      {/* Footnote */}
+                      {section.footnote && (
+                        <p className="text-xs text-muted/70 italic mt-5 pt-4 border-t border-almond">
+                          *** {section.footnote} ***
+                        </p>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
 
         {/* Book CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-12 text-center"
-        >
+        <div className="mt-10 text-center">
           <p className="text-muted mb-4">Ready to treat yourself?</p>
           <a
             href="/special"
@@ -101,8 +182,64 @@ export default function ServicesPage() {
           >
             Book an Appointment
           </a>
-        </motion.div>
+        </div>
       </div>
+    </div>
+  );
+}
+
+function renderPriceRow(item: PriceRowItem, index: number, isLast: boolean) {
+  return (
+    <div
+      key={item.name + index}
+      className={`flex items-start justify-between gap-4 py-3 ${!isLast ? "border-b border-almond" : ""}`}
+    >
+      <div>
+        <span className="text-sm text-charcoal font-medium">{item.name}</span>
+        {item.note && <p className="text-xs text-muted/70 mt-0.5">{item.note}</p>}
+      </div>
+      <div className="text-right shrink-0">
+        <span className="text-sm font-semibold text-deep-berry">{item.price}</span>
+        {item.priceAlt && <span className="text-sm text-muted"> | {item.priceAlt}</span>}
+      </div>
+    </div>
+  );
+}
+
+function renderNamedCard(item: NamedCardItem, index: number) {
+  return (
+    <div key={item.name + index} className="py-4 border-b border-almond last:border-0">
+      <div className="flex items-start justify-between gap-4 mb-1.5">
+        <p className="font-display italic text-deep-berry font-semibold text-base">{item.name}</p>
+        <div className="text-right shrink-0">
+          <span className="font-semibold text-charcoal text-base">{item.price}</span>
+          <p className="text-xs text-muted/70 mt-0.5">{item.duration}</p>
+        </div>
+      </div>
+      <p className="text-sm text-muted leading-relaxed">{item.description}</p>
+    </div>
+  );
+}
+
+function renderSpaCard(item: SpaCardItem, index: number) {
+  return (
+    <div key={item.name + index} className="py-5 border-b border-almond last:border-0">
+      <div className="flex items-start justify-between gap-4 mb-2">
+        <div>
+          <p className="font-display italic text-deep-berry font-semibold text-base">{item.name}</p>
+          <p className="text-xs text-muted/70 mt-0.5">{item.duration}</p>
+        </div>
+        <span className="font-semibold text-charcoal text-lg shrink-0">{item.price}</span>
+      </div>
+      <p className="text-sm text-muted italic leading-relaxed mb-3">{item.intro}</p>
+      <ul className="space-y-1.5">
+        {item.bullets.map((bullet, bi) => (
+          <li key={bi} className="flex gap-2 text-sm text-charcoal/80">
+            <span className="text-gold mt-0.5 shrink-0">•</span>
+            <span>{bullet}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
