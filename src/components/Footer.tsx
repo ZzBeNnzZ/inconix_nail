@@ -1,6 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaMapPin, FaPhone, FaEnvelope, FaClock, FaInstagram, FaFacebookF, FaTiktok } from "react-icons/fa6";
+import {
+  FaMapPin,
+  FaPhone,
+  FaEnvelope,
+  FaClock,
+  FaInstagram,
+  FaFacebookF,
+  FaTiktok,
+} from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
 const socialIcons: Record<string, IconType> = {
@@ -32,15 +40,27 @@ const contactInfo = [
     text: `${ADDRESS_LINE1}\n${ADDRESS_LINE2}`,
     href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${ADDRESS_LINE1}, ${ADDRESS_LINE2}`)}`,
   },
-  { icon: <FaPhone className="w-4 h-4 shrink-0 mt-0.5" />, text: PHONE, href: `tel:${PHONE.replace(/[^+\d]/g, "")}` },
-  { icon: <FaEnvelope className="w-4 h-4 shrink-0 mt-0.5" />, text: EMAIL, href: `mailto:${EMAIL}` },
-  { icon: <FaClock className="w-4 h-4 shrink-0 mt-0.5" />, text: HOURS_SHORT, href: undefined },
+  {
+    icon: <FaPhone className="w-4 h-4 shrink-0 mt-0.5" />,
+    text: PHONE,
+    href: `tel:${PHONE.replace(/[^+\d]/g, "")}`,
+  },
+  {
+    icon: <FaEnvelope className="w-4 h-4 shrink-0 mt-0.5" />,
+    text: EMAIL,
+    href: `mailto:${EMAIL}`,
+  },
+  {
+    icon: <FaClock className="w-4 h-4 shrink-0 mt-0.5" />,
+    text: HOURS_SHORT,
+    href: undefined,
+  },
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-charcoal text-white/70">
-      <div className="max-w-6xl mx-auto px-6 md:px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
         {/* Column 1 — Brand + Quick Links */}
         <div>
           <Image
@@ -54,7 +74,13 @@ export default function Footer() {
             Premium nail care in a warm, welcoming space. Every visit is a
             moment of luxury.
           </p>
+        </div>
+
+        <div>
           <ul className="space-y-2">
+            <h3 className="text-xs uppercase tracking-[0.15em] text-gold font-semibold mb-6">
+              Pages
+            </h3>
             {quickLinks.map((link) => (
               <li key={link.href}>
                 <Link
