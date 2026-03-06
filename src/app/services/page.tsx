@@ -14,7 +14,7 @@ import SectionLabel from "@/components/SectionLabel";
 
 export default function ServicesPage() {
   const allIds = menuSections.map((s) => s.id);
-  const [openSections, setOpenSections] = useState<Set<string>>(new Set(allIds));
+  const [openSections, setOpenSections] = useState<Set<string>>(new Set(["nail-enhancements"]));
   const [activeSection, setActiveSection] = useState(allIds[0]);
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
 
