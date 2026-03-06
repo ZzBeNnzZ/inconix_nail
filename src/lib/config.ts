@@ -8,18 +8,16 @@ export const PHONE = process.env.NEXT_PUBLIC_PHONE || "(555) 123-4567";
 export const EMAIL = process.env.NEXT_PUBLIC_EMAIL || "hello@lumierenails.com";
 
 // Hours
-export const HOURS_MON_FRI = process.env.NEXT_PUBLIC_HOURS_MON_FRI || "9:00 AM – 7:00 PM";
-export const HOURS_SAT = process.env.NEXT_PUBLIC_HOURS_SAT || "9:00 AM – 6:00 PM";
+export const HOURS_MON_SAT = process.env.NEXT_PUBLIC_HOURS_MON_SAT || "9:30 AM – 7:00 PM";
 export const HOURS_SUN = process.env.NEXT_PUBLIC_HOURS_SUN || "10:00 AM – 5:00 PM";
 
 export const HOURS = [
-  { day: "Monday – Friday", time: HOURS_MON_FRI },
-  { day: "Saturday", time: HOURS_SAT },
+  { day: "Monday – Saturday", time: HOURS_MON_SAT },
   { day: "Sunday", time: HOURS_SUN },
 ];
 
 // A compact version for the footer
-export const HOURS_SHORT = `Mon–Fri: ${HOURS_MON_FRI}\nSat: ${HOURS_SAT}\nSun: ${HOURS_SUN}`;
+export const HOURS_SHORT = `Mon–Sat: ${HOURS_MON_SAT}\nSun: ${HOURS_SUN}`;
 
 // Social Media
 export const INSTAGRAM_URL = process.env.NEXT_PUBLIC_INSTAGRAM_URL || "";

@@ -2,7 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
-import { FaGem, FaLeaf, FaHeart, FaStar, FaUser } from "react-icons/fa6";
+import { FaGem, FaLeaf, FaHeart, FaStar } from "react-icons/fa6";
 import SectionLabel from "@/components/SectionLabel";
 import { SALON_NAME } from "@/lib/config";
 
@@ -15,13 +15,6 @@ const stagger: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.08 } },
 };
-
-const team = [
-  { name: "Sophia Chen", role: "Founder & Lead Nail Artist", bio: `With 12 years of experience in luxury nail care, Sophia founded ${SALON_NAME} to bring a spa-level experience to every client, every visit.` },
-  { name: "Maya Williams", role: "Senior Nail Technician", bio: "Maya specializes in intricate nail art and gel extensions. Her work has been featured in local beauty editorials." },
-  { name: "Priya Patel", role: "Nail Technician & Educator", bio: "Priya brings warmth and precision to every service. She also leads our junior technician training program." },
-  { name: "Jade Torres", role: "Nail Technician", bio: "Jade's specialty is minimalist nail art and long-lasting dip powder manicures. Clients love her calming chair-side manner." },
-];
 
 const values = [
   { icon: <FaGem className="w-7 h-7 text-gold" />, title: "Premium Products", description: "We use only high-grade, salon-trusted brands — products we'd put on our own nails." },
@@ -103,35 +96,6 @@ export default function AboutContent() {
             </div>
           </motion.div>
         </div>
-      </section>
-
-      {/* Team */}
-      <section className="px-6 md:px-12 max-w-6xl mx-auto mb-20">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          variants={stagger}
-        >
-          <motion.div variants={fadeUp} className="text-center mb-12">
-            <SectionLabel text="The People Behind the Magic" />
-            <h2 className="font-display text-4xl md:text-5xl text-charcoal font-semibold mt-2">
-              Meet Our Team
-            </h2>
-          </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {team.map((member) => (
-              <motion.div key={member.name} variants={fadeUp} className="text-center">
-                <div className="rounded-2xl bg-blush/40 aspect-square mb-4 flex items-center justify-center">
-                  <FaUser className="w-10 h-10 text-rose" />
-                </div>
-                <h3 className="font-semibold text-charcoal">{member.name}</h3>
-                <p className="text-xs text-gold uppercase tracking-[0.1em] mt-1 mb-2">{member.role}</p>
-                <p className="text-sm text-muted leading-relaxed">{member.bio}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </section>
 
       {/* CTA */}

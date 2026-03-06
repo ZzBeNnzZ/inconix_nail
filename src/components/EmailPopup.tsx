@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdSpa } from "react-icons/md";
 
-const STORAGE_KEY = "lumiere_popup_dismissed";
+const STORAGE_KEY = "iconix_popup_dismissed";
 
 export default function EmailPopup() {
   const [visible, setVisible] = useState(false);
