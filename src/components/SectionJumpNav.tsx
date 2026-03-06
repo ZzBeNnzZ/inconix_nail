@@ -13,7 +13,11 @@ interface Props {
   onJump: (id: string) => void;
 }
 
-export default function SectionJumpNav({ sections, activeSection, onJump }: Props) {
+export default function SectionJumpNav({
+  sections,
+  activeSection,
+  onJump,
+}: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -48,26 +52,37 @@ export default function SectionJumpNav({ sections, activeSection, onJump }: Prop
     const btnLeft = activeBtn.offsetLeft;
     const btnRight = btnLeft + activeBtn.offsetWidth;
     if (btnLeft < navLeft + 16) {
-      el.scrollTo({ left: btnLeft - 16, behavior: "smooth" });
+      el.scrollTo({ left: Math.max(btnLeft - 16, 0), behavior: "smooth" });
     } else if (btnRight > navRight - 16) {
-      el.scrollTo({ left: btnRight - el.clientWidth + 16, behavior: "smooth" });
+      el.scrollTo({ left: Math.min(btnRight - el.clientWidth + 16, el.scrollWidth - el.clientWidth), behavior: "smooth" });
     }
   }, [activeSection]);
 
   return (
     <div className="sticky top-16 z-40 bg-warm-cream/95 backdrop-blur-sm border-b border-almond">
       <div className="max-w-3xl mx-auto px-2 md:px-4 flex items-center gap-1">
-
         {/* Left button — outside the scroll area */}
         <button
           aria-label="Scroll left"
-          onClick={() => scrollRef.current?.scrollBy({ left: -160, behavior: "smooth" })}
+          onClick={() =>
+            scrollRef.current?.scrollBy({ left: -160, behavior: "smooth" })
+          }
           className={`shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-almond bg-white text-charcoal hover:text-deep-berry hover:border-deep-berry/40 transition-all duration-200 ${
             canScrollLeft ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
 
@@ -110,16 +125,27 @@ export default function SectionJumpNav({ sections, activeSection, onJump }: Prop
         {/* Right button — outside the scroll area */}
         <button
           aria-label="Scroll right"
-          onClick={() => scrollRef.current?.scrollBy({ left: 160, behavior: "smooth" })}
+          onClick={() =>
+            scrollRef.current?.scrollBy({ left: 160, behavior: "smooth" })
+          }
           className={`shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-almond bg-white text-charcoal hover:text-deep-berry hover:border-deep-berry/40 transition-all duration-200 ${
             canScrollRight ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 5l7 7-7 7"
+            />
           </svg>
         </button>
-
       </div>
     </div>
   );

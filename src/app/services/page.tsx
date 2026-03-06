@@ -14,7 +14,9 @@ import SectionLabel from "@/components/SectionLabel";
 
 export default function ServicesPage() {
   const allIds = menuSections.map((s) => s.id);
-  const [openSections, setOpenSections] = useState<Set<string>>(new Set(["nail-enhancements"]));
+  const [openSections, setOpenSections] = useState<Set<string>>(
+    new Set(["nail-enhancements"]),
+  );
   const [activeSection, setActiveSection] = useState(allIds[0]);
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
   const isJumping = useRef(false);
@@ -68,7 +70,7 @@ export default function ServicesPage() {
       window.scrollTo({ top, behavior: "smooth" });
       setTimeout(() => {
         isJumping.current = false;
-      }, 1000);
+      }, 1500);
     }, 50);
   };
 
@@ -81,8 +83,8 @@ export default function ServicesPage() {
           Our Services
         </h1>
         <p className="text-muted leading-relaxed max-w-lg">
-          Every service is performed with premium products, careful technique, and genuine attention
-          to detail.
+          Every service is performed with premium products, careful technique,
+          and genuine attention to detail.
         </p>
       </div>
 
@@ -135,7 +137,9 @@ export default function ServicesPage() {
                     <div className="px-6 pb-6 border-t border-almond">
                       {/* Section note */}
                       {section.note && (
-                        <p className="text-sm text-muted italic mt-4 mb-2">{section.note}</p>
+                        <p className="text-sm text-muted italic mt-4 mb-2">
+                          {section.note}
+                        </p>
                       )}
 
                       {/* Add-on callouts */}
@@ -212,11 +216,17 @@ function renderPriceRow(item: PriceRowItem, index: number, isLast: boolean) {
     >
       <div>
         <span className="text-sm text-charcoal font-medium">{item.name}</span>
-        {item.note && <p className="text-xs text-muted/70 mt-0.5">{item.note}</p>}
+        {item.note && (
+          <p className="text-xs text-muted/70 mt-0.5">{item.note}</p>
+        )}
       </div>
       <div className="text-right shrink-0">
-        <span className="text-sm font-semibold text-deep-berry">{item.price}</span>
-        {item.priceAlt && <span className="text-sm text-muted"> | {item.priceAlt}</span>}
+        <span className="text-sm font-semibold text-deep-berry">
+          {item.price}
+        </span>
+        {item.priceAlt && (
+          <span className="text-sm text-muted"> | {item.priceAlt}</span>
+        )}
       </div>
     </div>
   );
@@ -224,11 +234,18 @@ function renderPriceRow(item: PriceRowItem, index: number, isLast: boolean) {
 
 function renderNamedCard(item: NamedCardItem, index: number) {
   return (
-    <div key={item.name + index} className="py-4 border-b border-almond last:border-0">
+    <div
+      key={item.name + index}
+      className="py-4 border-b border-almond last:border-0"
+    >
       <div className="flex items-start justify-between gap-4 mb-1.5">
-        <p className="font-display italic text-deep-berry font-semibold text-base">{item.name}</p>
+        <p className="font-display italic text-deep-berry font-semibold text-base">
+          {item.name}
+        </p>
         <div className="text-right shrink-0">
-          <span className="font-semibold text-charcoal text-base">{item.price}</span>
+          <span className="font-semibold text-charcoal text-base">
+            {item.price}
+          </span>
           <p className="text-xs text-muted/70 mt-0.5">{item.duration}</p>
         </div>
       </div>
@@ -239,15 +256,24 @@ function renderNamedCard(item: NamedCardItem, index: number) {
 
 function renderSpaCard(item: SpaCardItem, index: number) {
   return (
-    <div key={item.name + index} className="py-5 border-b border-almond last:border-0">
+    <div
+      key={item.name + index}
+      className="py-5 border-b border-almond last:border-0"
+    >
       <div className="flex items-start justify-between gap-4 mb-2">
         <div>
-          <p className="font-display italic text-deep-berry font-semibold text-base">{item.name}</p>
+          <p className="font-display italic text-deep-berry font-semibold text-base">
+            {item.name}
+          </p>
           <p className="text-xs text-muted/70 mt-0.5">{item.duration}</p>
         </div>
-        <span className="font-semibold text-charcoal text-lg shrink-0">{item.price}</span>
+        <span className="font-semibold text-charcoal text-lg shrink-0">
+          {item.price}
+        </span>
       </div>
-      <p className="text-sm text-muted italic leading-relaxed mb-3">{item.intro}</p>
+      <p className="text-sm text-muted italic leading-relaxed mb-3">
+        {item.intro}
+      </p>
       <ul className="space-y-1.5">
         {item.bullets.map((bullet, bi) => (
           <li key={bi} className="flex gap-2 text-sm text-charcoal/80">
