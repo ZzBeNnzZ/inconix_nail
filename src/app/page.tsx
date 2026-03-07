@@ -198,11 +198,14 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="rounded-2xl bg-almond aspect-[4/5] w-full flex items-center justify-center"
+            className="rounded-2xl overflow-hidden aspect-[4/5] w-full relative"
           >
-            <p className="text-muted text-sm uppercase tracking-widest">
-              Photo Coming Soon
-            </p>
+            <Image
+              src="/images/banners/banner-02.jpg"
+              alt="Iconix Nail Bar salon"
+              fill
+              className="object-cover"
+            />
           </motion.div>
 
           {/* Text */}

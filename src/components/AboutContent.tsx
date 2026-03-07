@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { FaGem, FaLeaf, FaHeart, FaStar } from "react-icons/fa6";
 import SectionLabel from "@/components/SectionLabel";
 import { SALON_NAME } from "@/lib/config";
@@ -49,8 +50,13 @@ export default function AboutContent() {
           variants={stagger}
           className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
         >
-          <motion.div variants={fadeUp} className="rounded-2xl bg-almond aspect-[4/5] flex items-center justify-center">
-            <p className="text-muted text-sm uppercase tracking-widest">Salon Photo</p>
+          <motion.div variants={fadeUp} className="rounded-2xl overflow-hidden aspect-[4/5] relative">
+            <Image
+              src="/images/banners/banner-02.jpg"
+              alt="Iconix Nail Bar salon"
+              fill
+              className="object-cover"
+            />
           </motion.div>
           <div>
             <motion.p variants={fadeUp} className="text-charcoal/80 leading-relaxed mb-5">
