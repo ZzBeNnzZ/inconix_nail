@@ -1,37 +1,13 @@
+import { createServiceClient } from "@/utils/supabase/service";
+
+export const dynamic = "force-dynamic";
+
 interface Subscriber {
   id: string;
   created_at: string;
   email: string;
   source: string;
 }
-
-// Mock data — will be replaced with real Supabase fetch
-const MOCK_SUBSCRIBERS: Subscriber[] = [
-  {
-    id: "1",
-    created_at: "2026-03-08T09:12:00Z",
-    email: "fan1@example.com",
-    source: "popup",
-  },
-  {
-    id: "2",
-    created_at: "2026-03-07T18:30:00Z",
-    email: "fan2@example.com",
-    source: "popup",
-  },
-  {
-    id: "3",
-    created_at: "2026-03-06T13:00:00Z",
-    email: "fan3@example.com",
-    source: "popup",
-  },
-  {
-    id: "4",
-    created_at: "2026-03-05T10:45:00Z",
-    email: "fan4@example.com",
-    source: "popup",
-  },
-];
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -41,8 +17,14 @@ function formatDate(iso: string) {
   });
 }
 
-export default function NewsletterPage() {
-  const subscribers = MOCK_SUBSCRIBERS;
+export default async function NewsletterPage() {
+  const supabase = createServiceClient();
+  const { data, error } = await supabase
+    .from("newsletter_subscribers")
+    .select("id, created_at, email, source")
+    .order("created_at", { ascending: false });
+
+  const subscribers: Subscriber[] = error || !data ? [] : data;
 
   return (
     <div className="max-w-3xl mx-auto">

@@ -1,3 +1,7 @@
+import { createServiceClient } from "@/utils/supabase/service";
+
+export const dynamic = "force-dynamic";
+
 const SPOTS_CAP = 50;
 
 interface Reservation {
@@ -9,34 +13,6 @@ interface Reservation {
   confirmed: boolean;
 }
 
-// Mock data — will be replaced with real Supabase fetch
-const MOCK_RESERVATIONS: Reservation[] = [
-  {
-    id: "1",
-    created_at: "2026-03-08T11:00:00Z",
-    name: "Alice Tran",
-    email: "alice@example.com",
-    phone: "(555) 111-2222",
-    confirmed: false,
-  },
-  {
-    id: "2",
-    created_at: "2026-03-07T15:30:00Z",
-    name: "David Lee",
-    email: "david@example.com",
-    phone: null,
-    confirmed: true,
-  },
-  {
-    id: "3",
-    created_at: "2026-03-06T08:45:00Z",
-    name: "Sophie Chen",
-    email: "sophie@example.com",
-    phone: "(555) 333-4444",
-    confirmed: false,
-  },
-];
-
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
     month: "short",
@@ -45,8 +21,14 @@ function formatDate(iso: string) {
   });
 }
 
-export default function ReservationsPage() {
-  const reservations = MOCK_RESERVATIONS;
+export default async function ReservationsPage() {
+  const supabase = createServiceClient();
+  const { data, error } = await supabase
+    .from("soft_opening_reservations")
+    .select("id, created_at, name, email, phone, confirmed")
+    .order("created_at", { ascending: false });
+
+  const reservations: Reservation[] = error || !data ? [] : data;
   const spotsUsed = reservations.length;
   const spotsRemaining = SPOTS_CAP - spotsUsed;
 

@@ -1,4 +1,7 @@
 import StatusSelect from "./StatusSelect";
+import { createServiceClient } from "@/utils/supabase/service";
+
+export const dynamic = "force-dynamic";
 
 type Status = "new" | "in_progress" | "resolved" | "spam";
 
@@ -12,46 +15,6 @@ interface ContactSubmission {
   status: Status;
 }
 
-// Mock data — will be replaced with real Supabase fetch
-const MOCK_CONTACTS: ContactSubmission[] = [
-  {
-    id: "1",
-    created_at: "2026-03-08T14:32:00Z",
-    name: "Jane Smith",
-    email: "jane@example.com",
-    phone: "(555) 123-4567",
-    message: "Hi! I was wondering if you have availability for a full set of acrylics this Saturday?",
-    status: "new",
-  },
-  {
-    id: "2",
-    created_at: "2026-03-07T10:15:00Z",
-    name: "Bob Johnson",
-    email: "bob@example.com",
-    phone: null,
-    message: "When are you opening? I saw your sign on the building and I'm excited to visit!",
-    status: "resolved",
-  },
-  {
-    id: "3",
-    created_at: "2026-03-06T09:00:00Z",
-    name: "Maria Garcia",
-    email: "maria@example.com",
-    phone: "(555) 987-6543",
-    message: "Do you offer nail art? I would love to get something custom done for my wedding.",
-    status: "in_progress",
-  },
-  {
-    id: "4",
-    created_at: "2026-03-05T16:45:00Z",
-    name: "Unknown Sender",
-    email: "spam@fake.com",
-    phone: null,
-    message: "Buy cheap watches click here now!!!",
-    status: "spam",
-  },
-];
-
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
     month: "short",
@@ -64,8 +27,14 @@ function truncate(text: string, max = 80) {
   return text.length > max ? text.slice(0, max) + "…" : text;
 }
 
-export default function ContactsPage() {
-  const contacts = MOCK_CONTACTS;
+export default async function ContactsPage() {
+  const supabase = createServiceClient();
+  const { data, error } = await supabase
+    .from("contact_submissions")
+    .select("id, created_at, name, email, phone, message, status")
+    .order("created_at", { ascending: false });
+
+  const contacts: ContactSubmission[] = error || !data ? [] : data;
 
   return (
     <div className="max-w-6xl mx-auto">
