@@ -1,4 +1,5 @@
 import Link from "next/link";
+import JoinMailingListButton from "@/components/JoinMailingListButton";
 import Image from "next/image";
 import {
   FaMapPin,
@@ -149,12 +150,7 @@ export default function Footer() {
           </ul>
           <div className="mt-8">
             <p className="text-xs text-white/40 mb-3">Stay in the loop</p>
-            <Link
-              href="/special"
-              className="inline-block px-5 py-2.5 rounded-full bg-gold text-charcoal text-xs font-semibold uppercase tracking-widest hover:scale-105 transition-transform duration-200"
-            >
-              Join Mailing List
-            </Link>
+            <JoinMailingListButton />
           </div>
         </div>
       </div>

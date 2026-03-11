@@ -7,6 +7,7 @@ const navLinks = [
   { label: "Contacts", href: "/admin/contacts" },
   { label: "Reservations", href: "/admin/reservations" },
   { label: "Newsletter", href: "/admin/newsletter" },
+  { label: "Notifications", href: "/admin/notifications" },
 ];
 
 export default function AdminNav() {

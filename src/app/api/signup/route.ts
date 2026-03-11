@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
+import { resendClient } from "@/lib/resend";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -34,6 +35,20 @@ export async function POST(req: NextRequest) {
       { error: "Something went wrong" },
       { status: 500 },
     );
+  }
+
+  // Notify admin — fire and forget, never block the response
+  const adminEmail = process.env.ADMIN_NOTIFY_EMAIL;
+  const fromEmail = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev";
+  if (adminEmail && process.env.RESEND_API_KEY) {
+    resendClient.emails.send({
+      from: fromEmail,
+      to: adminEmail,
+      subject: `New Reservation — ${name}`,
+      text: `A new soft opening reservation was just submitted.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}`,
+    }).catch(() => {
+      // Silently ignore — reservation already saved, notification is best-effort
+    });
   }
 
   return NextResponse.json({ success: true });
