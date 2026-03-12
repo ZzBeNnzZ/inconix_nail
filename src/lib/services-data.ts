@@ -52,41 +52,85 @@ export const menuSections: MenuSection[] = [
       {
         heading: "ACRYLIC",
         items: [
-          { type: "price-row", name: "Color Powder", price: "Full Set $47+", priceAlt: "Refill $45+" },
-          { type: "price-row", name: "Powder with Gel Polish", price: "Full Set $53+", priceAlt: "Refill $48+" },
-          { type: "price-row", name: "Pink & White", price: "Full Set $58+", priceAlt: "Refill $53+" },
-          { type: "price-row", name: "Ombre (2 Colors)", price: "Full Set $58+", priceAlt: "Refill $53+" },
+          {
+            type: "price-row",
+            name: "Color Powder",
+            price: "Full Set $47+",
+            priceAlt: "Refill $45+",
+          },
+          {
+            type: "price-row",
+            name: "Powder with Gel Polish",
+            price: "Full Set $53+",
+            priceAlt: "Refill $48+",
+          },
+          {
+            type: "price-row",
+            name: "Ombre (2 Colors)",
+            price: "Full Set $60+",
+            priceAlt: "Refill $55+",
+          },
         ],
       },
       {
         heading: "GEL BUILDER",
         items: [
-          { type: "price-row", name: "Gel Builder Color", price: "Full Set $60+", priceAlt: "Refill $55+" },
-          { type: "price-row", name: "Gel Builder with Gel Polish", price: "Full Set $65+", priceAlt: "Refill $60+" },
-          { type: "price-row", name: "Gel Builder w/ Nature French", price: "Full Set $70+", priceAlt: "Refill $65+" },
-          { type: "price-row", name: "Gel Builder w/ Nail Extension", price: "$8+" },
+          {
+            type: "price-row",
+            name: "Gel Builder Color",
+            price: "Full Set $60+",
+            priceAlt: "Refill $55+",
+          },
+          {
+            type: "price-row",
+            name: "Gel Builder with Gel Polish",
+            price: "Full Set $65+",
+            priceAlt: "Refill $60+",
+          },
+          {
+            type: "price-row",
+            name: "Gel Builder w/ Nail Extension",
+            price: "$8+",
+          },
         ],
       },
       {
         heading: "GEL X",
         items: [
-          { type: "price-row", name: "Gel X with Shellac Color", price: "$63+" },
-          { type: "price-row", name: "Gel X with Nature French", price: "$73+" },
+          {
+            type: "price-row",
+            name: "Gel X with Shellac Color",
+            price: "$63+",
+          },
         ],
       },
       {
         heading: "DIPPING POWDER",
         items: [
           { type: "price-row", name: "Dip Powder", price: "$47+" },
-          { type: "price-row", name: "Dip Pink & White", price: "$58+" },
           { type: "price-row", name: "Dip w/ Nail Extension", price: "+$8" },
+          {
+            type: "price-row",
+            name: "Dip Removal (with same service)",
+            price: "+$5",
+          },
         ],
       },
       {
         heading: "DUAL FORM",
         items: [
-          { type: "price-row", name: "Dual Form Color", price: "Full Set $70+", priceAlt: "Refill $65+" },
-          { type: "price-row", name: "Dual Form with Shellac", price: "Full Set $75+", priceAlt: "Refill $70+" },
+          {
+            type: "price-row",
+            name: "Dual Form Color",
+            price: "Full Set $70+",
+            priceAlt: "Refill $65+",
+          },
+          {
+            type: "price-row",
+            name: "Dual Form with Shellac",
+            price: "Full Set $75+",
+            priceAlt: "Refill $70+",
+          },
         ],
       },
     ],
@@ -99,6 +143,7 @@ export const menuSections: MenuSection[] = [
     addOns: [
       "Gel Polish Add-On: +$17",
       "Gel Removal: +$5 (Complimentary with new gel service)",
+      "",
     ],
     groups: [
       {
@@ -290,10 +335,29 @@ export const menuSections: MenuSection[] = [
         heading: "EYELASH EXTENSION",
         items: [
           { type: "price-row", name: "Cluster Mink", price: "Full Set $50+" },
-          { type: "price-row", name: "Classic", price: "Full Set $85+", priceAlt: "Refill $55+" },
-          { type: "price-row", name: "Hybrid", price: "Full Set $99+", priceAlt: "Refill $60+" },
-          { type: "price-row", name: "Volume", price: "Full Set $119+", priceAlt: "Refill $70+" },
-          { type: "price-row", name: "Mega Volume / Design Lash", price: "By consultation" },
+          {
+            type: "price-row",
+            name: "Classic",
+            price: "Full Set $85+",
+            priceAlt: "Refill $55+",
+          },
+          {
+            type: "price-row",
+            name: "Hybrid",
+            price: "Full Set $99+",
+            priceAlt: "Refill $60+",
+          },
+          {
+            type: "price-row",
+            name: "Volume",
+            price: "Full Set $119+",
+            priceAlt: "Refill $70+",
+          },
+          {
+            type: "price-row",
+            name: "Mega Volume / Design Lash",
+            price: "By consultation",
+          },
           { type: "price-row", name: "Eyelash Lift", price: "$55+" },
           { type: "price-row", name: "Eyelash Lift & Tint", price: "$65+" },
         ],
@@ -311,7 +375,12 @@ export const menuSections: MenuSection[] = [
           { type: "price-row", name: "Upper Lip", price: "$8+" },
           { type: "price-row", name: "Chin", price: "$10+" },
           { type: "price-row", name: "Side Burn", price: "$15+" },
-          { type: "price-row", name: "Full Face", price: "$45+", note: "Forehead not included" },
+          {
+            type: "price-row",
+            name: "Full Face",
+            price: "$45+",
+            note: "Forehead not included",
+          },
           { type: "price-row", name: "Underarms", price: "$23+" },
           { type: "price-row", name: "Half Arms", price: "$28+" },
           { type: "price-row", name: "Full Arms", price: "$45+" },
@@ -332,7 +401,12 @@ export const menuSections: MenuSection[] = [
           { type: "price-row", name: "Kid Manicure", price: "$15" },
           { type: "price-row", name: "Pedicure", price: "$25" },
           { type: "price-row", name: "Additional for Gel", price: "$12" },
-          { type: "price-row", name: "Polish Change", price: "$10", priceAlt: "Gel $18" },
+          {
+            type: "price-row",
+            name: "Polish Change",
+            price: "$10",
+            priceAlt: "Gel $18",
+          },
         ],
       },
     ],
@@ -352,9 +426,12 @@ export const menuSections: MenuSection[] = [
           },
           { type: "price-row", name: "Longer Length", price: "$5+" },
           { type: "price-row", name: "Cuticle Care", price: "$8+" },
-          { type: "price-row", name: "Soak Off with Same Service", price: "$8+" },
-          { type: "price-row", name: "Nature French Tip", price: "$8" },
-          { type: "price-row", name: "Curved French Design", price: "$20+" },
+          {
+            type: "price-row",
+            name: "Soak Off with Same Service",
+            price: "$8+",
+          },
+          { type: "price-row", name: "French Tip", price: "$15+" },
           { type: "price-row", name: "Nail Art Design", price: "$10+" },
           { type: "price-row", name: "Nail Fix", price: "$5+" },
           { type: "price-row", name: "Additional Color (3+)", price: "$5+" },
@@ -372,16 +449,40 @@ export const menuSections: MenuSection[] = [
     groups: [
       {
         items: [
-          { type: "price-row", name: "Polish Change", price: "$15", priceAlt: "Gel $25" },
+          {
+            type: "price-row",
+            name: "Polish Change",
+            price: "$15",
+            priceAlt: "Gel $25",
+          },
           { type: "price-row", name: "Gel Removal with Service", price: "$5" },
-          { type: "price-row", name: "Gel Polish on Nail Enhancement", price: "$35+" },
+          {
+            type: "price-row",
+            name: "Gel Polish on Nail Enhancement",
+            price: "$35+",
+          },
           { type: "price-row", name: "Soak Off Only", price: "$15" },
           { type: "price-row", name: "Extra Massage", price: "$2/min" },
           { type: "price-row", name: "Big Toes Extension", price: "$8" },
           { type: "price-row", name: "Refill (Big Toes)", price: "$6+" },
-          { type: "price-row", name: "Full Set Toes", price: "$55+", priceAlt: "Gel $65+" },
-          { type: "price-row", name: "Refill Toes", price: "$50+", priceAlt: "Gel $60+" },
-          { type: "price-row", name: "Full Set Toes w/ French", price: "$70+", priceAlt: "Refill $65+" },
+          {
+            type: "price-row",
+            name: "Full Set Toes",
+            price: "$55+",
+            priceAlt: "Gel $65+",
+          },
+          {
+            type: "price-row",
+            name: "Refill Toes",
+            price: "$50+",
+            priceAlt: "Gel $60+",
+          },
+          {
+            type: "price-row",
+            name: "Full Set Toes w/ French",
+            price: "$70+",
+            priceAlt: "Refill $65+",
+          },
         ],
       },
     ],
