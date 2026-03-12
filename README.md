@@ -228,7 +228,7 @@ This file is already committed and contains salon info. You can edit it to updat
 NEXT_PUBLIC_SALON_NAME=Iconix
 
 # Contact
-NEXT_PUBLIC_ADDRESS_LINE1=6547 HWY 6 N
+NEXT_PUBLIC_ADDRESS_LINE1=6547 HWY 6 North
 NEXT_PUBLIC_ADDRESS_LINE2= Houston, TX 77084
 NEXT_PUBLIC_PHONE=(281) 766-5678
 NEXT_PUBLIC_EMAIL=iconixnailbar@gmail.com
