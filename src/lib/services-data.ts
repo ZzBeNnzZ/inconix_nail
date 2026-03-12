@@ -142,8 +142,8 @@ export const menuSections: MenuSection[] = [
     note: "All pedicures include essential nail care, gentle callus smoothing, and your choice of polish.",
     addOns: [
       "Gel Polish Add-On: +$17",
+      "French Tip: +$8",
       "Gel Removal: +$5 (Complimentary with new gel service)",
-      "",
     ],
     groups: [
       {
@@ -215,6 +215,7 @@ export const menuSections: MenuSection[] = [
     note: "All manicures include essential nail care and your choice of polish.",
     addOns: [
       "Gel Polish Add-On: +$17",
+      "French Tip: +$8",
       "Gel Removal: +$5 (Complimentary with new gel service)",
     ],
     groups: [
