@@ -59,7 +59,7 @@ export default function SectionJumpNav({
   }, [activeSection]);
 
   return (
-    <div className="sticky top-16 z-40 bg-warm-cream/95 backdrop-blur-sm border-b border-almond">
+    <div className="sticky top-16 z-30 bg-warm-cream/95 backdrop-blur-sm border-b border-almond">
       <div className="max-w-3xl mx-auto px-2 md:px-4 flex items-center gap-1">
         {/* Left button — outside the scroll area */}
         <button
