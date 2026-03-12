@@ -25,15 +25,16 @@ This is the official website for **Iconix Nail Bar**, built with Next.js 16, Typ
 
 Before you begin, make sure you have the following installed and ready:
 
-| Requirement | Version | How to check |
-|---|---|---|
-| **Node.js** | v20 or higher | `node -v` |
-| **npm** | v10 or higher | `npm -v` |
-| **Git** | Any recent version | `git -v` |
+| Requirement | Version            | How to check |
+| ----------- | ------------------ | ------------ |
+| **Node.js** | v20 or higher      | `node -v`    |
+| **npm**     | v10 or higher      | `npm -v`     |
+| **Git**     | Any recent version | `git -v`     |
 
 If Node.js is not installed, download it from [https://nodejs.org](https://nodejs.org) — choose the **LTS** version.
 
 You will also need accounts on:
+
 - **Supabase** — [https://supabase.com](https://supabase.com) (free tier is sufficient)
 - **Vercel** — [https://vercel.com](https://vercel.com) (free tier is sufficient, recommended for hosting)
 
@@ -48,8 +49,6 @@ git clone <repository-url>
 cd nail-salon
 ```
 
-> Replace `<repository-url>` with the actual GitHub/GitLab URL provided to you.
-
 ---
 
 ## 3. Install Dependencies
@@ -61,6 +60,7 @@ npm install
 ```
 
 This will install everything listed in `package.json`, including:
+
 - **Next.js 16** — the web framework
 - **React 19** — UI library
 - **Tailwind CSS v4** — styling
@@ -329,25 +329,25 @@ The `.env.local` file is not pushed to GitHub, so you must add the private varia
 1. In your Vercel project dashboard, go to **Settings → Environment Variables**
 2. Add **all** of the following variables (copy the values from your local `.env` and `.env.local`):
 
-| Variable Name | Where to find the value |
-|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase → Settings → API |
-| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase → Settings → API |
-| `SUPABASE_SECRET_KEY` | Supabase → Settings → API (service_role key) |
-| `ADMIN_PASSWORD` | The password you chose in `.env.local` |
-| `ADMIN_SESSION_SECRET` | The 64-char hex string from `.env.local` |
-| `NEXT_PUBLIC_SALON_NAME` | From `.env` |
-| `NEXT_PUBLIC_ADDRESS_LINE1` | From `.env` |
-| `NEXT_PUBLIC_ADDRESS_LINE2` | From `.env` |
-| `NEXT_PUBLIC_PHONE` | From `.env` |
-| `NEXT_PUBLIC_EMAIL` | From `.env` |
-| `NEXT_PUBLIC_HOURS_MON_SAT` | From `.env` |
-| `NEXT_PUBLIC_HOURS_SUN` | From `.env` |
-| `NEXT_PUBLIC_INSTAGRAM_URL` | From `.env` |
-| `NEXT_PUBLIC_FACEBOOK_URL` | From `.env` |
-| `NEXT_PUBLIC_TIKTOK_URL` | From `.env` |
-| `NEXT_PUBLIC_SOFT_OPENING_DATE` | From `.env` |
-| `NEXT_PUBLIC_SOFT_OPENING_SPOTS` | From `.env` |
+| Variable Name                          | Where to find the value                      |
+| -------------------------------------- | -------------------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`             | Supabase → Settings → API                    |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase → Settings → API                    |
+| `SUPABASE_SECRET_KEY`                  | Supabase → Settings → API (service_role key) |
+| `ADMIN_PASSWORD`                       | The password you chose in `.env.local`       |
+| `ADMIN_SESSION_SECRET`                 | The 64-char hex string from `.env.local`     |
+| `NEXT_PUBLIC_SALON_NAME`               | From `.env`                                  |
+| `NEXT_PUBLIC_ADDRESS_LINE1`            | From `.env`                                  |
+| `NEXT_PUBLIC_ADDRESS_LINE2`            | From `.env`                                  |
+| `NEXT_PUBLIC_PHONE`                    | From `.env`                                  |
+| `NEXT_PUBLIC_EMAIL`                    | From `.env`                                  |
+| `NEXT_PUBLIC_HOURS_MON_SAT`            | From `.env`                                  |
+| `NEXT_PUBLIC_HOURS_SUN`                | From `.env`                                  |
+| `NEXT_PUBLIC_INSTAGRAM_URL`            | From `.env`                                  |
+| `NEXT_PUBLIC_FACEBOOK_URL`             | From `.env`                                  |
+| `NEXT_PUBLIC_TIKTOK_URL`               | From `.env`                                  |
+| `NEXT_PUBLIC_SOFT_OPENING_DATE`        | From `.env`                                  |
+| `NEXT_PUBLIC_SOFT_OPENING_SPOTS`       | From `.env`                                  |
 
 3. After adding all variables, go to **Deployments** and click **"Redeploy"** on the latest deployment — environment variables only apply to new deployments.
 
@@ -382,6 +382,7 @@ The site has a private admin dashboard for managing contacts, reservations, and 
 - **Login:** Enter the password you set as `ADMIN_PASSWORD`
 
 The admin panel includes:
+
 - **Contacts** — View and update status of contact form submissions
 - **Reservations** — View soft opening sign-ups
 - **Newsletter** — View newsletter subscribers
@@ -422,21 +423,26 @@ After deploying, test each feature to confirm it is working:
 ## 12. Troubleshooting
 
 ### Build fails with missing environment variable errors
+
 Make sure all environment variables are set — both in Vercel's dashboard (for deployed site) and in your local `.env` / `.env.local` files (for local dev).
 
 ### Supabase connection errors / data not saving
+
 - Double-check that `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` match your Supabase project exactly
 - Verify `SUPABASE_SECRET_KEY` is the **service_role** key, not the anon key
 - Confirm the tables and RLS policies were created (Step 4.3)
 
 ### Admin panel redirects to login on every visit
+
 - `ADMIN_SESSION_SECRET` must be set and must stay the same between deployments — changing it invalidates all existing sessions
 - Make sure `ADMIN_PASSWORD` is set correctly
 
 ### Gallery shows no images
+
 - Images must be inside `public/images/gallery_imgs/` with one of these extensions: `.jpg`, `.jpeg`, `.png`, `.webp`
 - Re-deploy after adding images if hosting on Vercel (static files need a new build)
 
 ### `npm run build` fails locally but works on Vercel (or vice versa)
+
 - Make sure your local Node.js version is **v20 or higher** (`node -v`)
 - Delete `node_modules` and `.next`, then reinstall: `rm -rf node_modules .next && npm install`

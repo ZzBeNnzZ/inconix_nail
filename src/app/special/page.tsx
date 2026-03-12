@@ -28,23 +28,36 @@ export default function SpecialPage() {
 
       {/* Heading */}
       <h1 className="font-display text-5xl md:text-7xl text-white font-semibold text-center mb-4 leading-tight">
-        Soft Opening
-        <br />
-        Special
+        COMING SOON
       </h1>
-      <p className="text-white/60 text-center max-w-lg leading-relaxed mb-12">
+      <p className="mb-6 text-center text-sm md:text-base uppercase tracking-[0.28em] text-white/60">
+        to Copperfield, TX
+      </p>
+      <div className="relative mb-10 flex flex-col items-center">
+        <div className="absolute inset-x-0 top-10 mx-auto h-28 w-56 rounded-full bg-gold/20 blur-3xl" />
+
+        <div className="relative z-10 mt-4 rounded-[2rem] border border-white/10 bg-white/5 px-8 py-6 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-md">
+          <div className="flex items-center justify-center gap-4">
+            <div className="h-px w-10 bg-gradient-to-r from-transparent to-gold/60" />
+            <span className="text-[1rem] uppercase tracking-[0.4em] text-white/45">
+              WIN
+            </span>
+            <div className="h-px w-10 bg-gradient-to-l from-transparent to-gold/60" />
+          </div>
+          <span className="mt-3 block text-center font-display text-7xl md:text-[7rem] font-bold leading-none text-[#E6C98A] drop-shadow-[0_10px_28px_rgba(230,201,138,0.35)]">
+            $500
+          </span>
+        </div>
+      </div>
+      {/* <p className="text-white/60 text-center max-w-lg leading-relaxed mb-12">
         We&apos;re rolling out the red carpet for our very first guests. Reserve
         your spot today and enjoy exclusive early-access pricing — available for
         a limited time only.
-      </p>
+      </p> */}
 
       {/* Perks */}
       <div className="flex flex-wrap gap-4 justify-center mb-12">
-        {[
-          "20% off all services",
-          "Complimentary hand mask",
-          "Priority booking",
-        ].map((perk) => (
+        {["Free Pedicure", "VIP Grand Opening Discounts"].map((perk) => (
           <span
             key={perk}
             className="px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/80 text-sm"
@@ -55,7 +68,7 @@ export default function SpecialPage() {
       </div>
 
       {/* Countdown */}
-      <div className="mb-14">
+      {/* <div className="mb-14">
         <p className="text-xs uppercase tracking-[0.2em] text-white/40 text-center mb-5">
           Offer ends in
         </p>
@@ -69,15 +82,16 @@ export default function SpecialPage() {
             })}
           </span>
         </div>
-      </div>
+      </div> */}
 
       {/* Form */}
       <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-2xl p-8">
         <h2 className="font-display text-2xl text-white font-semibold mb-1">
-          Reserve My Spot
+          JOIN THE VIP LIST
         </h2>
         <p className="text-white/40 text-sm mb-6">
-          Only {SOFT_OPENING_SPOTS} spots available
+          First {SOFT_OPENING_SPOTS} VIP Members Receive Exclusive Opening
+          Offers
         </p>
 
         <SignupForm />

@@ -4,11 +4,12 @@ import { resendClient } from "@/lib/resend";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { email, name, phone } = body;
+  const { firstName, lastName, email, phone } = body;
+  const name = `${(firstName ?? "").trim()} ${(lastName ?? "").trim()}`.trim();
 
-  if (!email || !name || !phone) {
+  if (!name || !phone) {
     return NextResponse.json(
-      { error: "Name, email, and phone are required" },
+      { error: "First name, last name, and phone are required" },
       { status: 400 },
     );
   }
@@ -17,7 +18,7 @@ export async function POST(req: NextRequest) {
 
   const { error } = await supabase.rpc("insert_soft_opening_reservation", {
     p_name: name,
-    p_email: email,
+    p_email: email || null,
     p_phone: phone,
   });
 
@@ -44,10 +45,10 @@ export async function POST(req: NextRequest) {
     resendClient.emails.send({
       from: fromEmail,
       to: adminEmail,
-      subject: `New Reservation — ${name}`,
-      text: `A new soft opening reservation was just submitted.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}`,
+      subject: `New Entry — ${name}`,
+      text: `A new giveaway entry was just submitted.\n\nName: ${name}\nEmail: ${email || "not provided"}\nPhone: ${phone}`,
     }).catch(() => {
-      // Silently ignore — reservation already saved, notification is best-effort
+      // Silently ignore — entry already saved, notification is best-effort
     });
   }
 
