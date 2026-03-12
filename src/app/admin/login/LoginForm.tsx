@@ -1,13 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -21,7 +19,7 @@ export default function LoginForm() {
     });
 
     if (res.ok) {
-      router.push("/admin/contacts");
+      window.location.href = "/admin/contacts";
     } else {
       const data = await res.json();
       setError(data.error ?? "Something went wrong");
