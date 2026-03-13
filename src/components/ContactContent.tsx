@@ -79,6 +79,7 @@ export default function ContactContent() {
                 <br />
                 {ADDRESS_LINE2}
               </a>
+              <p className="text-xs text-muted/60 mt-1">Copperfield • Houston Nail Salon</p>
             </div>
             <div>
               <h2 className="font-semibold text-charcoal mb-3 text-sm uppercase tracking-[0.1em]">

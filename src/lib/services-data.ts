@@ -142,7 +142,7 @@ export const menuSections: MenuSection[] = [
     note: "All pedicures include essential nail care, gentle callus smoothing, and your choice of polish.",
     addOns: [
       "Gel Polish Add-On: +$17",
-      "French Tip: +$8",
+      "French Tip: +$8",                                              
       "Gel Removal: +$5 (Complimentary with new gel service)",
     ],
     groups: [
@@ -152,7 +152,7 @@ export const menuSections: MenuSection[] = [
             type: "named-card",
             name: "Iconix 24K Golden Bliss",
             price: "$85",
-            duration: "70 mins",
+            duration: "70 mins",  
             description:
               "Warm Neck Wrap, Bath Bomb Soak, 24K Gold Sugar Scrub with Fresh Orange, Gold Jelly Mask, Collagen Socks & Creamy Gold Mask with Hot Towel Infusion, Warm Candle Oil Massage with 20-min Hot Stone Therapy, Steamer & 7-min Relaxation Massage, Fresh Cucumber Mask Finish with 24K Gold Serum Infusion.",
           },

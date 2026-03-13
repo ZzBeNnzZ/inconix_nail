@@ -77,7 +77,12 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-warm-cream">
       {/* Page Header */}
-      <div className="pt-40 pb-8 px-6 md:px-12 max-w-3xl mx-auto">
+      <motion.div
+        className="pt-40 pb-8 px-6 md:px-12 max-w-3xl mx-auto"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
         <SectionLabel text="Full Menu" />
         <h1 className="font-display text-5xl md:text-6xl text-charcoal font-semibold mt-2 mb-3">
           Our Services
@@ -86,17 +91,29 @@ export default function ServicesPage() {
           Every service is performed with premium products, careful technique,
           and genuine attention to detail.
         </p>
-      </div>
+      </motion.div>
 
       {/* Sticky Jump Nav */}
-      <SectionJumpNav
-        sections={menuSections.map((s) => ({ id: s.id, label: s.label }))}
-        activeSection={activeSection}
-        onJump={jumpTo}
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
+      >
+        <SectionJumpNav
+          sections={menuSections.map((s) => ({ id: s.id, label: s.label }))}
+          activeSection={activeSection}
+          onJump={jumpTo}
+        />
+      </motion.div>
 
       {/* Sections */}
-      <div className="max-w-3xl mx-auto px-6 md:px-12 pb-24 pt-4 space-y-4">
+      <motion.div
+        className="max-w-3xl mx-auto px-6 md:px-12 pb-24 pt-4 space-y-4"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.05 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
         {menuSections.map((section) => {
           const isOpen = openSections.has(section.id);
           return (
@@ -203,7 +220,7 @@ export default function ServicesPage() {
             Book an Appointment
           </a>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

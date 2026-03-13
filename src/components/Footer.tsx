@@ -39,6 +39,7 @@ const contactInfo = [
   {
     icon: <FaMapPin className="w-4 h-4 shrink-0 mt-0.5" />,
     text: `${ADDRESS_LINE1}\n${ADDRESS_LINE2}`,
+    sub: "Copperfield • Houston Nail Salon",
     href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${ADDRESS_LINE1}, ${ADDRESS_LINE2}`)}`,
   },
   {
@@ -104,18 +105,23 @@ export default function Footer() {
             {contactInfo.map((item, i) => (
               <li key={i} className="flex gap-3 text-sm leading-relaxed">
                 {item.icon}
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="whitespace-pre-line hover:text-gold transition-colors duration-200"
-                  >
-                    {item.text}
-                  </a>
-                ) : (
-                  <span className="whitespace-pre-line">{item.text}</span>
-                )}
+                <div>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="whitespace-pre-line hover:text-gold transition-colors duration-200"
+                    >
+                      {item.text}
+                    </a>
+                  ) : (
+                    <span className="whitespace-pre-line">{item.text}</span>
+                  )}
+                  {"sub" in item && item.sub && (
+                    <p className="text-xs text-white/40 mt-1">{item.sub}</p>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
